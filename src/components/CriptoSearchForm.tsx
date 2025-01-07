@@ -1,11 +1,13 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { currencies } from '../data';
 import { useCryptoStore } from '../store';
 import { Pair } from '../interfaces';
+import ErrorMessage from './ErrorMessage';
 
 export default function CriptoSearchForm() {
-	const { cryptocurrencies } = useCryptoStore();
+	const { cryptocurrencies, fetchData } = useCryptoStore();
 
+	const [error, setError] = useState('')
 	const [pair, setPair] = useState<Pair>({
 		currency: '',
 		cryptocurrency: ''
@@ -15,18 +17,32 @@ export default function CriptoSearchForm() {
 		setPair({
 			...pair,
 			[e.target.name]: e.target.value
-		})
+		});
 	};
 
-	const handleSubmit = () => {
-		
-	}
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		if (Object.values(pair).includes('')) {
+			setError('Todos los campos son obligatorios.');
+            return;
+		}
+		setError('');
+		fetchData(pair)
+	};
 
 	return (
-		<form className="form">
+		<form className="form" onSubmit={handleSubmit}>
+
+            {error && <ErrorMessage>{error}</ErrorMessage>}	
+
 			<div className="field">
 				<label htmlFor="currency">Moneda:</label>
-				<select name="currency" id="currency" onChange={handleChange}>
+				<select
+					name="currency"
+					id="currency"
+					value={pair.currency}
+					onChange={handleChange}
+				>
 					<option value="">Seleccione</option>
 					{currencies.map(currency => (
 						<option key={currency.code} value={currency.code}>
@@ -36,10 +52,11 @@ export default function CriptoSearchForm() {
 				</select>
 			</div>
 			<div className="field">
-				<label htmlFor="criptocurrency">Moneda:</label>
+				<label htmlFor="cryptocurrency">Moneda:</label>
 				<select
-					name="criptocurrency"
-					id="criptocurrency"
+					name="cryptocurrency"
+					id="cryptocurrency"
+					value={pair.cryptocurrency}
 					onChange={handleChange}
 				>
 					<option value="">Seleccione</option>
@@ -53,7 +70,7 @@ export default function CriptoSearchForm() {
 					))}
 				</select>
 			</div>
-			<input type="submit" value="Cotizar" onClick={handleSubmit} />
+			<input type="submit" value="Cotizar" />
 		</form>
 	);
 }
