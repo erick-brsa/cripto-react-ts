@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# Cotizador de criptomonedas React - TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cotizador de criptomonedas
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instalación
 
-## Expanding the ESLint configuration
+Sigue estos pasos para instalar y ejecutar el proyecto localmente:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+1. **Clona el repositorio:**
 
-- Configure the top-level `parserOptions` property like this:
+    ```bash
+    git clone https://github.com/erick-brsa/cripto-react-ts.git
+    ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+2. **Navega al directorio del proyecto:**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+    ```bash
+    cd cripto-react-ts
+    ```
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+3. **Instala las dependencias:**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    ```bash
+    npm install
+    ```
+
+4. **Inicia el servidor de desarrollo:**
+
+    ```bash
+    npm run dev
+    ```
+
+5. Abre tu navegador y visita la URL que aparece en la terminal para ver la aplicación en funcionamiento.
+
+## Scripts Disponibles
+
+En el directorio del proyecto, puedes ejecutar los siguientes comandos:
+
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Construye la aplicación para producción.
+- `npm run preview`: Sirve la aplicación construida en un servidor local.

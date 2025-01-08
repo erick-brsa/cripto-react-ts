@@ -29,6 +29,6 @@ export async function fetchCurrencyCryptoPrice(pair: Pair) {
 		DISPLAY[pair.cryptocurrency][pair.currency]
 	);
 	if (result.success) {
-		console.log(result.data);
+		return result.data;
 	}
 }
